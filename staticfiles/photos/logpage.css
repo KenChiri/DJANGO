@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Amita&family=Bubblegum+Sans&family=Caveat:wght@400;500&family=Lexend:wght@500&family=Oswald&family=Oooh+Baby&family=Poppins&family=Roboto:ital,wght@1,100&display=swap');
+
+        body {
+            background-color: rgb(28, 34, 35);
+            opacity: 0.9;
+            margin: 0;
+            padding: 0;
+        }
+        .welcome {
+            font-family: 'Oswald', sans-serif;
+            text-align: center;
+            font-size: 4em;
+            padding: 0;
+            font-weight: 700;
+            text-decoration: wavy;
+            color: rgb(142, 182, 189);
+        }
+        #step1, #step2, #step3, #step4 {
+            padding-top: 40pt;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            background-color: rgb(1, 6, 15);
+            height: 600px;
+            width: 40%;
+            padding: 2%;
+            opacity: 0.8;
+            color: rgb(184, 247, 241);
+            text-align: left;
+            font-family: 'Bubblegum Sans', cursive;
+        }
+        .head {
+            padding-top: 40pt;
+        }
+        .signin {
+            display: flex;
+            justify-content: center;
+            background-color: rgb(7, 13, 14);
+            width: 200pt;
+            height: 300pt;
+            padding: 10px;
+            color: rgb(142, 182, 189);
+            opacity: 0.9;
+            font-family: 'Lexend', sans-serif;
+            padding-left: 30px;
+            border-radius: 50px;
+        }
+        button {
+            background-color: rgb(33, 44, 45);
+            color: whitesmoke;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100px;
+            opacity: 1;
+        }
+        button:hover {
+            background-color: rgb(43, 69, 69);
+        }
+        .container {
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+        }
+        .main {
+            --bg-imge: url("photos/pexels-karl-solano-4048602.jpg");
+            --bg-image-opacity: .3;
+            background-size: cover;
+            background-position: center;
+            background-color: rgb(6, 18, 28);
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+        }
+        .main:after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background-size: cover;
+            background-image: var(--bg-imge);
+            opacity: var(--bg-image-opacity);
+        }
+        .signin input[type="text"],
+        .signin input[type="email"],
+        .signin input[type="password"] {
+            width: 250px;
+            height: 25px;
+            background-color: rgb(209, 240, 232);
+            color: rgb(0, 0, 0);
+            border: 2px solid black;
+           
+        }
+        #step1 input[type="text"],
+        #step1 input[type="email"],
+        #step1 input[type="password"] {
+            width: 250px;
+            height: 25px;
+            background-color: rgb(209, 240, 232);
+            color: rgb(0, 0, 0);
+            border-radius: 5px;
+            border: 2px solid black;
+        }
+
+        .signin input[type="text"]:hover,
+        .signin input[type="email"]:hover,
+        .signin input[type="password"]:hover,
+        #step1 input[type="text"]:hover,
+        #step1 input[type="email"]:hover,
+        #step1 input[type="password"]:hover {
+            border: 2px solid rgb(246, 229, 0);
+        }
+
+
+        a {
+            text-align: right;
+            text-decoration: none;
+            color: rgb(250, 223, 91);
+        }
+        a:hover {
+            color: rgb(142, 182, 189);
+        }
+        .signUp {
+            --bg-imge: url("photos/pexels-karl-solano-4048602.jpg");
+            --bg-image-opacity: .3;
+            background-size: cover;
+            background-position: center;
+            background-color: rgb(9, 25, 39);
+            background-repeat: no-repeat;
+            height: 650px;
+            isolation: isolate;
+            position: relative;
+            width: 60%;
+            font-family: 'Lexend', sans-serif;
+            text-align: center;
+    }
+    .signUp::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background-size: cover;
+        background-image: var(--bg-imge);
+        opacity: var(--bg-image-opacity);
+    }
+    .signUp h1 {
+        color: rgb(183, 222, 255);
+
+
+    }
+
+
+    p {
+        color: red;
+    }
+
+    .signupSuccess {
+        color:greenyellow;
+    }
+    footer {
+        width: 100%;
+        background-color: black;
+        height: 30px;
+        padding: 8px;
+        text-align: center;
+        color: whitesmoke;
+        margin: 0;
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px; /* Set the width of the scrollbar track */
+        
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: #271c25; /* Set the background color of the track */
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: #888585; /* Set the color of the thumb */
+        border-radius: 10px;
+        width: 10px; /* Set the width of the thumb to match the track */
+        height: 5px;
+      }
+
+
+      .main {
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        height: 500pt;
+      }

@@ -1,0 +1,26 @@
+{% include 'authenticator/navigation.html' %}
+
+<h1 class="dashH1">Incoming Accident Alerts</h1>
+    <table id="alertTable">
+        <tr id="alertFields">
+            <th>Message</th> 
+            <th>Photo</th> 
+            <th>Scene Description</th> 
+            <th>Location</th>
+            <th>Reported Time</th>
+        </tr>
+        {% for report in reports %}
+        <tr>
+            
+            <td>{{ report.message}}</td>
+            <td><img src="{{ report.photo.url }}" alt="Photo" class="reportPhotos"></td>
+            <td>{{ report.scene_description}}</td>
+            <td>{{ report.location}}</td>
+            <td>{{ report.created_at}}</td>
+            
+            
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% include 'footer.html' %}

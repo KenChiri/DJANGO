@@ -1,0 +1,159 @@
+body {
+    margin: 0;
+    padding: 0;
+
+}
+.all {
+    display: flex;
+    flex-direction: column;
+
+}
+nav {
+    position: fixed;
+    z-index: 2;
+    margin-bottom: 36pt;
+    width: 100%;
+}
+.navbar {
+    background-color: rgb(1, 6, 16);
+}
+nav ul {
+    list-style-type: none;
+    text-align: left;
+    margin: 0;
+    min-height: 36pt;
+}
+nav ul li {
+    display: inline-block;
+    color: aliceblue;;
+    padding: 10pt;
+}
+nav li:hover {
+    border-bottom: 2px solid rgb(123, 176, 156);
+}
+.welcome {
+    --bg-imge: url("photos/pexels-karl-solano-4048602.jpg");
+    --bg-image-opacity: 0.1;
+    background-size: cover;
+    background-color: rgb(0, 18, 32);
+    background-repeat: no-repeat;
+    max-height: 400pt;
+    padding-top: 30pt;
+    isolation: isolate;
+    position: relative;
+    border-radius: 0pt 0pt 0pt 40pt;
+    flex-direction: row;
+}
+.welcome::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-size: cover;
+    background-image: var(--bg-imge);
+    opacity: var(--bg-image-opacity);
+    border-radius: 0pt 0pt 0pt 40pt;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10pt;
+    padding: 40pt;
+}
+
+.reportForm {
+    min-height: 500pt;
+    background-color: rgb(234, 243, 251);
+    min-width: 300pt;
+    border-radius: 10pt;
+    padding: 10pt;
+    color: rgb(4, 15, 24);
+
+}
+hr {
+    border: 1px solid rgb(5, 108, 186);
+}
+
+.content {
+    min-height: 500pt;
+    min-width: 400pt;
+}
+.content h1 {
+    color: aliceblue;
+    font-size: 2.5em;
+    padding-top: 20pt;
+
+    
+}
+.userpage {
+    height: 400pt;
+}
+.info {
+    background-color: rgb(1, 29, 46);
+    height: 400pt;
+
+}
+
+img {
+    height: 190px;
+    width: 150px;
+    max-width: 100%;
+    border-radius: 2pt;
+}
+
+.items > div:hover {
+    transform: translateY(-16px);
+    border: 1px solid rgb(44, 40, 42);
+    transition: 0.5s;
+    border: 1px solid rgb(14, 122, 180);
+}
+
+a {
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.bottom {
+    height: 300pt;
+    background-position: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    background-color: rgb(40, 22, 60);
+}
+.bottom h2 {
+    align-self: flex-start;
+    color: rgb(243, 33, 71);
+}
+
+button {
+    height: 30pt;
+    border-radius: 50pt;
+    font-weight: bold;
+    background-color: rgb(255, 217, 0);
+    border: 1px solid black;
+}
+button:hover {
+    cursor: pointer;
+    border: 1px solid rgb(175, 237, 43);
+}
+.name {
+    color: rgb(241, 220, 33);
+}
+
+@media all and (max-width: 1080px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+    .reportForm {
+        width: fit-content;
+    }
+    .content {
+        min-height: auto;
+        text-align: center;
+    }
+}

@@ -1,0 +1,172 @@
+
+
+    <br>
+    <h1 class="dashH1">Manage Police Abstract</h1>
+    <div class="dash-container">
+
+        <div class="dash">
+            
+            <br>
+            <div class="sect1">
+                <div class="head">Accident Report</div>
+
+                <button type="submit" id="absBtn">Create New File</button>
+
+                <div class="fileNav">
+
+
+                </div>
+
+
+
+            </div>
+            <div class="sect2">
+                <div class="head">Crime Report</div>
+
+                <button type="submit" id="absBtn">Create New Abstract</button>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="frm">
+        <h1>Police abstract Form</h1>
+        
+        <h2>From</h2>
+        <div class="intro">
+            <div class="part1">
+                <label for="officer_in_charge">Officer in Charge:</label> <br>
+                <input type="text" name="officer_in_charge" id="officer_in_charge" required> <br>
+                <label for="division">Division:</label><br>
+                <input type="text" name="division" id="division" required><br>
+                <label for="address">P.O. Box</label><br>
+                <input type="text" name="picAddress"><br>
+                <br>
+            </div>
+            <div class="part2">
+                <label for="date">Date:</label> <br>
+                <input type="date" name="date" id="date" required> <br>
+                <label for="our_ref">Our Refference No:</label> <br>
+                <input type="text" name="our_ref" id="our_ref" required> <br>
+                <label for="policeRef">Police Refference No:</label><br>
+                <input type="text"  name="policeRef" id="policeRef"><br>
+            </div>
+        </div>
+        <hr>
+        <h2>Accident Details</h2>
+        <div class="details">
+            <div class="vpart1">
+                I/we understand that your Police Station received a report <br> on an <label for="accident_involving"><b>Accident Involving </b></label> <br>
+                <input type="text" name="victimName" id="accident_involving" required> <br>
+                <label for="victimAddress">Enter their address below if known:</label><br>
+                <input type="text" name="victimAddress" id="address"><br>
+                <label for="date_of_accident">Date Accident occurred:</label><br>
+                <input type="date" name="date_of_accident" id="date_of_accident" required><br>
+                <label for="time_of_accident">Time of Accident:</label>
+                <input type="time" name="time_of_accident" id="time_of_accident" required><br>
+                <label for="place_of_accident">Place of Accident:</label><br>
+                <input type="text" name="place_of_accident" id="place_of_accident" required> <br>
+                <br>
+            </div>
+            <div id="vehicles" class="vpart2">
+                <div class="vehicle-input">
+                    <label for="vehicles">It involved vehicle(s) Reg No</label><br>
+                    <div id="vehicleList">
+                        
+                    </div>
+                    <button id="addVehicle">Add Vehicle +</button> <button id="removeVehicle">Remove field -</button>
+                    <button id="submit">Send</button>
+                </div>
+                <br>
+                <label for="policeStation">Name of police station where accident was reported</label>
+                <br>
+                <input type="text" name="reportStation">
+            </div>
+        </div>
+        <hr>
+        <h2>Investigation Information</h2>
+        <div class="investigate">
+            <div class="ipart1">
+                Please provide the following information from the record: <br>
+                <h3>Vehicle Information:</h3><br>
+
+                    Vehicle Owner Name: <br>
+                    &nbsp; &nbsp;<input type="text" name="vehicleOwner"> <br>
+                    Vehicle Registration Number: <br>
+                    &nbsp; &nbsp;<input type="text" name="OwVehicleRegNo">  <br>
+
+                <h3>Insurance information:</h3><br>
+                 Insurance Company Name </h3><br>
+                &nbsp; &nbsp;<input type="text" name="insuranceCompany"> <br>
+                <h3>Investigation Status:</h3><br>
+                <ul>
+                    <li>[]YES(Investigation Completed) <input type="radio" name="completedInv" value="YES"></li>
+                    <li>[]NO(Investigation Ongoing)<input type="radio" name="completedInv" value="NO"></li>
+                </ul>
+                <div id="completeInv"></div> If <b>true</b>, has anyone been <b>charged</b>? YES<input type="radio" name="charged" value="YES"> NO <input type="radio" name="charged" value="NO"> <br>
+            </div>
+            <div class="ipart2" id="chargeDetails">
+                <h3>Charge Details</h3><br>
+                Name of charged driver/cyclist/pedestrian: <br>
+                &nbsp;<input type="text" name="chargedRider"><br>
+                
+                Vehicle charged: <br>
+                &nbsp;<input type="text" name="chargedVehicle"><br>
+
+                Name of the charge: <br>
+                &nbsp;<input type="text" name="chargeName"><br>
+                
+                Court Case File Number: <br>
+                &nbsp;<input type="text" name="caseFileNumber"><br>
+                
+                Name of investigation officer: <br>
+                &nbsp;<input type="text" name="investigationOfficer"><br>
+                
+                Investigation result (if known): <br>
+                &nbsp;<textarea name="investigationResult" id="results" cols="30" rows="5"></textarea> <br>
+             
+                Accident Register/OB Number <br>
+                &nbsp;<input type="text" name="accidentRegNo"> <br>
+                <br>
+                Date of finding&nbsp;<input type="date" name="chargeDate"> <br>
+                
+            </div>
+        </div>
+        <hr>
+        <h2>Injured Persons and Witnesses</h2>
+        <div class="victims">
+            <div class="vpart1">
+                <h4>Name of Persons injured:</h4>  <br>
+                <textarea name="injuredPerson" id="injured" cols="30" rows="5"></textarea> <br>
+            </div>
+            <div class="vpart2">
+                <div class="person">
+                    <h4>Class of Person</h4>  <br> 
+                    <input type="text" name="personClass"><br>
+                </div>
+                <div class="pAddress">
+                    <h4>Address</h4>
+                    <input type="text" name="personAddress">
+                </div>
+            </div>
+            <div class="nature">
+                <h4>Nature of Injury</h4> <br>
+                <textarea rows="5" cols="20" name="injuryNature"></textarea><br>
+            </div>
+        </div>
+        <div class="witnesses">
+            <h4>Witness Name and Address</h4>
+            <div id="witnessList">
+
+            </div>
+            <button id="addWitness">Add Witness +</button> <button id="removeWitness">Remove field -</button>
+
+
+        </div>
+        <hr>
+        <h2>Submitt Form</h2>
+        <button type="submit" name="upload">Submit</button>
+
+    </div>
+
+{% include 'footer.html' %}

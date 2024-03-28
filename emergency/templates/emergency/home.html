@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/infostyles.css' %}">
+</head>
+<body>
+    <div class="all">
+        <nav id="navbar">
+            <ul>
+                <li>Home</li>
+                <li>Store</li>
+                <li>Community</li>
+                <li>About Us</li>
+                <li>Support</li>
+            </ul>
+        </nav>
+        <div class="welcome">
+            <div class="container">
+                <div class="content">
+                    <h1>Welcome to <a href="" class="accu">AccuReport</a> , <br> a digital platform here to <br>
+                    help you save a life</h1>
+                    <button type="submit" id="getInfo">Emergency Helpline <i class="fa-solid fa-phone-flip"></i></button> <button type="submit" name="CrimeReport" id="reportCrime">Crime Report</button>
+                </div>
+                <div class="form-cont">
+                    <div class="reportForm">
+                        <h2>Report an Accident</h2>
+                        <hr class="line">
+                        <!-- Report Form -->
+
+                        <form action="" method="post" id="report" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <br>
+                            <br>
+                            <br>
+                            <button type="submit">Report Accident</button> <br>
+                            <br>
+                            <br>
+                            <br>
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="message {{ message.tags }}">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        
+
+                        </form>
+                        <p class="motto">By submitting form, you give us access to important information 
+                            to help save a life. This information will remain anonymous and 
+                            it helps us in investigations. Feel free to share any evidence you
+                            have through your camera. It will help in, capturing offenders, help 
+                            make our country safe. We will be there to help.
+                            Utumishi Kwa Wote!
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+               
+        </div>
+        <div class="userpage" >
+
+            
+                
+
+
+        </div>
+        <div class="info" id="emergencyInfoSection">
+
+            <div class="contactInfo">
+                <h2 class="emergency">Emergency Information</h2>
+                <p>Here are some important emergency contact details:</p>
+                <ul>
+                  <li>Kenya Police: <div class="numbers">999 / 112/ 911</div></li>
+                  <li>Fire Department: <div class="numbers">999 / 112/ 911</div></li>
+                  <li>Ambulance: <div class="numbers">999 / 112/ 911</div></li>
+                </ul>
+                <p>For further assistance, you can contact us at [Email Address]</p>
+
+
+            </div>
+           
+
+
+                <img src="{% static 'css/photos/pexels-kampus-production-8204385.jpg' %}" alt=""  class="callCenter">
+   
+            
+
+        </div>
+        <div class="contact">
+
+        </div>
+</div>
+{% include 'footer.html' %}
+<script>
+    const listButtons = document.querySelectorAll('li');
+
+    listButtons.forEach(item => {
+        item.addEventListener('click', (event) => {
+            const link = item.querySelector('a');
+            if(link) {
+                window.location.href = link.href;
+            }
+
+        });
+        item.style.cursor = 'pointer';
+    });
+    function changeBg(){
+        var nav = document.getElementById('navbar');
+        var scrollval = window.scrollY;
+        if(scrollval < 150){
+            nav.classList.remove("navbar");
+        } else {
+            nav.classList.add("navbar");
+        }       
+    }
+    window.addEventListener('scroll', changeBg);
+
+    const emergencyInfoButton = document.getElementById('getInfo');
+
+    emergencyInfoButton.addEventListener('click', function() {
+    const emergencyInfoSection = document.getElementById('emergencyInfoSection');
+    emergencyInfoSection.scrollIntoView({ behavior: "smooth" });
+    })
+
+
+
+</script>
+    
+    
+</body>
+</html>
