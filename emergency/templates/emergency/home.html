@@ -13,10 +13,10 @@
         <nav id="navbar">
             <ul>
                 <li>Home</li>
-                <li>Store</li>
                 <li>Community</li>
-                <li>About Us</li>
+                <li id="abtUs">About Us</li>
                 <li>Support</li>
+                <li>Contact Us</li>
             </ul>
         </nav>
         <div class="welcome">
@@ -24,42 +24,48 @@
                 <div class="content">
                     <h1>Welcome to <a href="" class="accu">AccuReport</a> , <br> a digital platform here to <br>
                     help you save a life</h1>
-                    <button type="submit" id="getInfo">Emergency Helpline <i class="fa-solid fa-phone-flip"></i></button> <button type="submit" name="CrimeReport" id="reportCrime">Crime Report</button>
+                    <button type="submit" id="getInfo">Emergency Helpline <i class="fa-solid fa-phone-flip"></i></button> <button type="submit" name="CrimeReport" id="toggleFormButton">Crime Report</button>
                 </div>
                 <div class="form-cont">
                     <div class="reportForm">
-                        <h2>Report an Accident</h2>
                         <hr class="line">
                         <!-- Report Form -->
 
-                        <form action="" method="post" id="report" enctype="multipart/form-data">
+                        <form action="" method="post" id="emergencyReportForm" enctype="multipart/form-data">
+                            <h2>Accident Report</h2>
                             {% csrf_token %}
-                            {{ form.as_p }}
+                            <input type="hidden" name="report_type" value="accident_report"> 
+                            {{ emergency_form.as_p }}
                             <br>
                             <br>
-                            <br>
-                            <button type="submit">Report Accident</button> <br>
-                            <br>
-                            <br>
-                            <br>
-                            {% if messages %}
-                                {% for message in messages %}
-                                    <div class="message {{ message.tags }}">
-                                        {{ message }}
-                                    </div>
-                                {% endfor %}
-                            {% endif %}
-                        
-
+                            <button type="submit">Report Emergency</button>
                         </form>
-                        <p class="motto">By submitting form, you give us access to important information 
-                            to help save a life. This information will remain anonymous and 
-                            it helps us in investigations. Feel free to share any evidence you
-                            have through your camera. It will help in, capturing offenders, help 
-                            make our country safe. We will be there to help.
-                            Utumishi Kwa Wote!
-                        </p>
-
+                    
+                        <!-- Crime Report Form initially hidden -->
+                        <form action="" method="post" id="crimeReportForm" enctype="multipart/form-data" style="display: none;">
+                            <h2>Crime Report</h2>
+                            {% csrf_token %}
+                            <input type="hidden" name="report_type" value="crime_report">
+                            <table>
+                                {% for field in crime_form %}
+                                <tr>
+                                    <td>{{ field.label_tag }}</td>
+                                    <td>{{ field }}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                            <br>
+                            <br>
+                            <button type="submit">Report Crime</button>
+                        </form>
+                        
+                        {% if messages %}
+                        {% for message in messages %}
+                            <div class="message {{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        {% endif %}
                     </div>
 
                 </div>
@@ -68,6 +74,36 @@
                
         </div>
         <div class="userpage" >
+            <div class="themes">
+                <div class="up1">
+                    <h2>Why send these reports?</h2>
+                    <p class="motto">By submitting form, you give us access to important information 
+                        to help save a life. This information will remain anonymous and 
+                        it helps us in investigations. Feel free to share any evidence you
+                        have through your camera. It will help in, capturing offenders, help 
+                        make our country safe. We will be there to help.
+                        Utumishi Kwa Wote!
+                    </p>
+    
+                </div>
+                <div class="up2">
+                    <h2>Help us investigate</h2>
+                    <p class="motto">
+                        Don't be afraid to speak, we'll have it all covered for you. Reports anything
+                    happening around you, anything illegal, corrupt individuals, misconduct, harrasment
+                    persecusion, denial of rights. Describe whatever it is in detail and we will start Our
+                    investigations.  You can also add photos of the events, we will look into them.
+                    Rmember that we won't take any information of yours unless you let us. Remain anonymous
+                    for your own safety.
+    
+                    </p>
+                    
+                </div>
+
+            </div>
+            
+          
+
 
             
                 
@@ -84,7 +120,7 @@
                   <li>Fire Department: <div class="numbers">999 / 112/ 911</div></li>
                   <li>Ambulance: <div class="numbers">999 / 112/ 911</div></li>
                 </ul>
-                <p>For further assistance, you can contact us at [Email Address]</p>
+                <p>For further assistance, you can contact us at <a href="">director@cid.go.ke</a> </p>
 
 
             </div>
@@ -96,7 +132,22 @@
             
 
         </div>
-        <div class="contact">
+        <div id="aboutUs">
+            <h2>About us</h2>
+            <p style="width: 30%; ">
+                We are a dedicated team dedicated to handling automate all crime 
+                and accident reporting procedures. Instead of the old redundant File 
+                systems, we are equiped with a way that lets the public report crimes 
+                automatically from anywhere. No need to come in person, we can look at
+                whatever evidence you give us, and we will start our investigations. 
+                Remember also that we don't take in any information about you unless 
+                it is required by law or if you have given your consent. Your privacy is
+                of the highest concern for us.
+                
+
+            </p>
+           
+
 
         </div>
 </div>
@@ -131,6 +182,37 @@
     const emergencyInfoSection = document.getElementById('emergencyInfoSection');
     emergencyInfoSection.scrollIntoView({ behavior: "smooth" });
     })
+
+    const aboutUsLink = document.getElementById("abtUs");
+    aboutUsLink.addEventListener('click', function() {
+        const aboutUsSection = document.getElementById("aboutUs");
+        aboutUsSection.scrollIntoView({ behavior: "smooth" });
+    })
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const toggleFormButton = document.getElementById("toggleFormButton");
+    const emergencyForm = document.getElementById("emergencyReportForm");
+    const crimeForm = document.getElementById("crimeReportForm");
+
+    toggleFormButton.addEventListener("click", function () {
+        // Toggle between displaying emergency and crime forms
+        if (emergencyForm.style.display === "none") {
+            emergencyForm.style.display = "block";
+            crimeForm.style.display = "none";
+            toggleFormButton.textContent = "Report Crime";
+        } else {
+            emergencyForm.style.display = "none";
+            crimeForm.style.display = "block";
+            toggleFormButton.textContent = "Report Accident";
+        }
+    });
+});
+
+
+
+    
+
 
 
 

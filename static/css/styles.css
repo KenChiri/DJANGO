@@ -115,13 +115,14 @@ nav a {
     background-color: #586772;
 }
 
-#abstract, #chargesheet, #medicalreport, #accidentAlerts {
+#abstract, #chargesheet, #medicalreport, #accidentAlerts, #crimeAlerts, #roughDraft {
     width: 100%;
     margin-left: 170pt;
     padding-left: 10pt;
     font-family: 'Lexend', sans-serif;
     font-weight: 500;
 }
+
 
 
 
@@ -265,19 +266,19 @@ h4 {
     width: 90%;
     margin: 10px;
     border-collapse: collapse;
-    border-radius: 30px;
+    border-radius: 30px 30px 0px 0px;
     overflow: hidden;
     margin: 10pt;
 }
 
-#alertTable, th, td {
-    border-radius: 30px;
-}
 
 #alertTable td {
-    padding: 5px;
+    padding: 10px;
 }
-
+#alertTable th {
+    padding: 5pt;
+    
+}
 
 #alertFields {
     height: 40pt;
@@ -287,16 +288,44 @@ h4 {
 
 tr {
     height: 80pt;
+    background-color: rgb(238, 243, 249);
+    border-bottom: 1px solid black;
 }
 
 
 #alertTable tr:nth-child(even){
-    background-color: #e7f0f7;
+    background-color: #e4f1fa;
 }
 
 
 .reportPhotos {
     width: 200px;
-    height: 200px;
+    height: 150px;
 }
 
+
+.book {
+    width: 450px;
+    height: 600px;
+    padding: 40px;
+    border: 1px solid #000;
+    background-color: #edf1f2;
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 1.6;
+    overflow: auto;
+    background-image: linear-gradient(#000 1px, transparent 1px);
+    background-size: 100% 1.6em;
+}
+
+.book {
+    margin-left: 100pt;
+    margin: 50pt;
+}
+
+.message {
+    color: rgb(4, 160, 4);
+    background-color: #98c894;
+    border-left:5px solid rgb(4, 160, 4);
+    padding-top: 10px;
+    padding: 10pt;
+  }

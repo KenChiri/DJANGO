@@ -16,23 +16,23 @@
                     <h2>ACCIDENT FILES</h2>
                     <ul class="rec">
                         <li id="abstractli"><a href="#" >Police Abstract</a></li>
-                        <li id="chargesheetli"><a href="#"  >Charge Sheet</a></li>
-                        <li id="medicalreportli"><a href="#" >Medical Examination Report</a></li>
+                        <li id="chargesheetli"><a href="chargesheet"  >Charge Sheet</a></li>
+                        <li id="medicalreportli"><a href="medical" >Medical Examination Report</a></li>
                     </ul>
                     <h2>EMERGENCY ALERTS</h2>
                     <ul class="dis">
                         <li id="accidentAlertsli"><a href="#">Accident Alerts</a></li>
-                        <li><a href="">Crime Alerts</a></li>
+                        <li id="crimeAlertsli"><a href="#">Crime Alerts</a></li>
                     </ul>
                     <h2>ACTION CENTER</h2>
                     <ul class="cat">
+                        <li id="roughLi"><a href="#">Rough Draft</a></li>
                         <li><a href="">Sketch Planning</a></li>
                         <li><a href="">Progress Reports</a></li>
-                        <li><a href="">New Releases</a></li>
-                        <li><a href="">Upcoming</a></li>
-                        <li><a href="">Specials</a></li>
-                        <li><a href="">Virtual Reality</a></li>
-                        <li><a href="">Steam Controller</a></li>
+                        <li><a href="">Emergency Services</a></li>
+                        <li><a href="">Law Courts</a></li>
+                        <li><a href="">Medical Department</a></li>
+                        <li><a href="">Account Settings</a></li>
                     </ul>
             </div>
             <!-- THis is the Main page the body -->
@@ -52,6 +52,14 @@
                                     {% csrf_token %}
                                     {{ form.as_p }}
                                     <button type="submit" id="absBtn">Create New File</button>
+
+                                    {% for message in messages %}
+                                    <div class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %}" role="alert">
+                                        {{ message }}
+                                    </div>
+                                    {% endfor %}
+                                    <p>File Name: {{ name }}</p>
+                                    <p>Abstract: {{ abstract }}</p>
                                 </form>
 
                                 
@@ -215,15 +223,11 @@
                 </div>
                 <!-- THis is the main page for the chargesheet -->
                 <div id="chargesheet" class="sect" style="display: none;">
-                    {% include 'authenticator/navigation.html' %}
-                                
-                    <img class="courtarms" src="{% static 'css/photos/Picture1.jpg' %}" alt="Kenya Police Flag">
-                    <h1>CHARGE SHEET</h1>
+           
 
 
 
-
-                    {% include 'footer.html' %}
+                    
                 </div>
                  <!-- THis is the main page for the medical report -->
                 <div id="medicalreport" class="sect" style="display: none;">
@@ -246,6 +250,28 @@
                   
 
                     
+                </div>
+                <div id="crimeAlerts" class="sect" style="display: none;">
+    
+                    
+                    
+                  
+
+                    
+                </div>
+                <div id="roughDraft" class="sect" style="display: none;">
+                    {% include 'authenticator/navigation.html' %}
+                    <h1 class="dashH1">Accident Scene Description</h1>
+
+                    <textarea class="book">
+                        This is a book-like text area. You can write your text here. The single line in the middle represents the spine of the book.
+                    </textarea>
+    
+                    
+                    
+                  
+
+                    {% include 'footer.html' %}
                 </div>
         </div>
      </div>

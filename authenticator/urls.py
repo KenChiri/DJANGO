@@ -8,7 +8,7 @@ urlpatterns = [
     path('activate/<uidb64>/<token>', views.activate, name='activate'),
     path('logout', views.user_logout, name='logout'),
     path('index', views.index, name='index'),
-    path('password-reset', views.pwdReset, name='password-reset'),
+    path('password-reset/<uidb64>/<token>', views.pwdReset, name='password-reset'),
     path('verifyMail', views.mailOTP, name='verifyMail'),
     path('createFile', views.create_file, name='createFile'),
 ]

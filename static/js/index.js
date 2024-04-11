@@ -10,17 +10,17 @@ document.addEventListener('DOMContentLoaded', function () {
         showPage('abstract');
     });
 
-    document.getElementById('chargesheetli').addEventListener('click', function () {
-        showPage('chargesheet');
-    });
-
-    document.getElementById('medicalreportli').addEventListener('click', function () {
-        showPage('medicalreport');
+    document.getElementById('roughLi').addEventListener('click', function () {
+        showPage('roughDraft');
     });
 
     document.getElementById('accidentAlertsli').addEventListener('click', function () {
         loadAccidentAlerts();
     });
+    document.getElementById('crimeAlertsli').addEventListener('click', function () {
+        loadCrimeAlerts();
+    });
+  
 
 
     function showPage(pageId) {
@@ -66,7 +66,34 @@ document.addEventListener('DOMContentLoaded', function () {
         
         xhttp.send();
     }
+
+    function loadCrimeAlerts() {
+        // Get the accidentAlertsContent div
+        var contentDiv = document.getElementById("crimeAlerts");
     
+
+    
+        console.log("loadCrimeAlerts function called");  // Log when the function is called
+       
+    
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(xhttp.responseText);  // Log the response text
+                showPage('crimeAlerts')
+                // Include the fetched content in the div
+                contentDiv.innerHTML = this.responseText;
+
+                console.log("AJAX request successful");  // Log when the AJAX request is successful                
+                console.log(this.responseText);  // Log the response text
+            } else if (this.readyState == 4) {
+                console.log("AJAX request failed");  // Log when the AJAX request fails
+            }
+        };
+        xhttp.open("GET", 'crimes', true);
+        
+        xhttp.send();
+    }
     
 });
 
@@ -127,16 +154,6 @@ document.getElementById('removeVehicle').addEventListener('click', function() {
 });
 
 
-document.getElementById('submit').addEventListener('click', function () {
-    // Handle form submission logic here
-    var vehicleRegNos = document.getElementsByName('vehicleRegNo[]');
-    var regNosArray = Array.from(vehicleRegNos).map(function (input) {
-        return input.value;
-    });
-    console.log(regNosArray);
-    // Perform other actions like submitting data to the backend
-});
-
 
 //Adding a new witness
 document.getElementById('addWitness').addEventListener('click', function() {
@@ -177,18 +194,3 @@ document.getElementById('removeWitness').addEventListener('click', function() {
 
 });
 
-//Submitting the names of witnesses 
-document.getElementById('submit').addEventListener('click', function () {
-    // Handle form submission logic here
-    var witnessContainers = document.getElementById('witnessList').children;
-    var witnessesData = Array.from(witnessContainers).map(function (container) {
-        var nameInput = container.querySelector('input[name="witnessName[]"]');
-        var addressInput = container.querySelector('input[name="witnessAddress[]"]');
-        return {
-            name: nameInput.value,
-            address: addressInput.value
-        };
-    });
-    console.log(witnessesData);
-    // Perform other actions like submitting data to the backend
-});

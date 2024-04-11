@@ -1,12 +1,265 @@
+{% load static %}
+{% include 'base.html'%}
 
-<div id="chargesheet" class="sect" style="display: none;">
+
                    
-                                
-    <img class="courtarms" src="{% static 'css/photos/Picture1.jpg' %}" alt="Kenya Police Flag">
-    <h1>CHARGE SHEET</h1>
 
 
+<style>
 
+    .chargediv{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border: 3px double black;
+        padding: 10pt;
+        margin: 10pt;
+    }
+    #chargeTbl, tr, td, th{
+        border: 2px solid black;
+        border-collapse: collapse;
+        padding: 3px;
+    }
+    #chargeTbl {
+        margin: 5pt;
+    }
+    textarea {
+        margin: 0;
+    }
+    .headercharge {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 150pt;
+    }
+    #chargeButton {
+        text-align: center;
+        padding: 10pt;
+        border-radius: 5pt;
+        color: #ffffff;
+        background-color: rgb(6, 22, 54);
+    }
+    th {
+        background-color: rgb(150, 177, 218);
+    }
+    .arrested {
+        background-color: rgb(214, 206, 206);
+        
+    }
+    .arrestedTrue {
+        background-color: rgb(244, 236, 236);
+    }
+</style>
+
+   
+    <div id="chargesheet">
+        {% include 'authenticator/navigation.html' %}
+        <div class="chargediv">
+            <img class="courtarms" src="{% static 'css/photos/Picture1.jpg' %}" alt="Kenya Police Flag">
+            <h1>CHARGE SHEET</h1>
+            <h3>REPUBLIC OF KENYA</h3>
+            <div class="charge1">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="headercharge">
+                        <div class="left">
+                            COURT FILE NO: <input type="text" name="courtcaseNo"> <br>
+                            <br>
+                            ODPP CASE NO: <input type="text" name="odpp_case_no"> <br>
+                            <br>
+                            ODPP STATION: <input type="text" name="odpp_station"> <br>
+                            <br>
+                        </div>
+                        <div class="right">
+                            POLICE CASE NO: <input type="text" name="police_case_no"> <br>
+                            <br>
+                            OB NUMBER: <input type="text" name="ob_number"> <br>
+                            <br>
+                            DATE DRAFTED: <input type="date" name="date_drafted"> <br>
+                            <br>
+                        </div>
+        
+                    </div>
+        
+        
+                    <table id="chargeTbl">
+                        <tr>
+                            <th>Christian name <br>
+                                in full or name
+        
+                                <input type="text" name="christian_name" required></th> <br>
+                            </th>
+                            <th>Surname or <br>
+                                father’s name
+                                <input type="text" name ="fathers_name"> <br>
+                                </th>
+                            <th>
+                                Identity <br>
+                                Certificate no.
+                                <input type="text" name="id_number"><br>
+                            </th>
+                            <th>
+                                Sex
+                                <select name="gender" id="gender"> <br>
+                                    <option value="Male">Male</option> 
+                                    <option value="Female">Female</option>
+        
+                                </select>
+                            </th>
+                            <th>
+                                Nationality <br>
+                                or tribe <br>
+                                <input type="text" name="nationality"><br>
+                            </th>
+                            <th>
+                                Apparent age <br>
+                                <input type="text" name="age"><br>
+        
+                            </th>
+                            <th>
+                                Address (include <br>
+                                District and location <br>
+                                where applicable)
+        
+                                <input type="text" name="address"> <br>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                Charge <br>
+                                (SeeSecondschedule <br>
+                                of C.P.C)br
+                            </td>
+                            <td colspan="6">
+                                <textarea name="charge" id="" cols="120" rows="6"></textarea>
+                            </td> 
+                        </tr>
+                        <tr>
+                            <td>
+                                Particulars of <br>
+                                Offence <br>
+                            </td>
+                            <td colspan="6">
+                                <textarea name="particularsOfOffense" id="" cols="120" rows="6"></textarea>
+                            </td>
+                        </tr>
+                        <tr class="arrested">
+                            <td >
+                                If arrested
+                            </td>
+                            <td>
+                                Date of <br>
+                                arrest
+                            </td>
+                            <td>
+                                Without or with <br>
+                                warrant
+                            </td>
+                            <td>
+                                Date <br>
+                                Apprehension <br>
+                                report to court <br>
+                            </td>
+                            <td>
+                                Bond or <br>
+                                bail and <br>
+                                amount <br>
+                            </td>
+                            <td colspan="2">
+                                Is apprehension made for <br>
+                                summons to issue
+                            </td>
+                        </tr>
+                        <tr class="arrestedTrue">
+                            <td>
+                                Yes
+                            </td>
+                            <td>
+                                <input type="date" name="dateOfArrest">
+                            </td>
+                            <td>
+                                <select name="iswaranted" id="">
+                                    <option value="with">With</option>
+                                    <option value="without">Without</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="date" name="apprehensionDate">
+                            </td>
+                            <td>
+                                <input type="text" name="status">
+        
+                            </td>
+        
+                            <td colspan="2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Remanded <br>
+                                Adjourned to
+                            </td>
+                            <td colspan="6">
+        
+        
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Complainant and <br>
+                                Address <br>
+                            </td>
+                            <td colspan="6">
+                                <textarea rows="3" cols="120" name="complaint_address"></textarea><br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Witnessess 
+                            </td>
+                            <td colspan="6">
+                                <div id="witnessList">
+    
+                                </div>
+                                <button id="addWitness">Add Witness +</button> <button id="removeWitness">Remove field -</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Sentence
+                                Court and date
+                            </td>
+                            <td colspan="6">
+                                <textarea name="sentence" id="" cols="120" rows="6"></textarea>
+        
+                            </td>
+                            
+                        </tr>
+                    </table>
+        
+                    NAME OF PROSECUTOR: <input type="text" name="prosecutor"><br>
+        
+                    <button type="submit" name="createChargeSheet" id="chargeButton">Create ChargeSheet</button>
+            
+        
+                </form>
+    
+                
+            </div>
+            
+        
+        </div>
+        {% include 'footer.html' %}
+    
+    </div>
+   
 
 </div>
-{% include 'templates/footer.html' %}
+</div>
+<script src="{% static 'js/index.js' %}"></script> 
+</body>
+</html>
+
+
+    

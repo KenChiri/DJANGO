@@ -1,0 +1,42 @@
+{% include 'authenticator/navigation.html' %}
+
+<h1 class="dashH1">Latest Crime Leads</h1>
+    <table id="alertTable">
+        <tr id="alertFields">
+            <th>Crime Type</th> 
+            <th>Date Of incident</th> 
+            <th>Time Of incident</th> 
+            <th>Location</th>
+            <th>1st Witness</th>
+            <th>1st Witness Phone</th>
+            <th>2nd Witness</th>
+            <th>2nd Witness Phone</th>
+            <th>Evidence Description</th>
+            <th>Photo (evidence)</th>
+            <th>Message</th>
+            <th>Time Sent</th>
+        </tr>
+
+        {% for report in reports %}
+        <tr>
+            
+            <td>{{ report.crime_type }}</td>
+            <td>{{ report.incident_date }}</td>
+            <td>{{ report.incident_time }}</td>
+            <td>{{ report.location }}</td>
+            <td>{{ report.witness_name1 }}</td>
+            <td>{{ report.witness_phone1 }}</td>
+            <td>{{ report.witness_name2 }}</td>
+            <td>{{ report.witness_phone2 }}</td>
+            <td>{{ report.evidence_description }}</td>
+            <td><img src="{{ report.photo.url }}" alt="Photo" class="reportPhotos"></td>
+            <td>{{ report.message }}</td>
+            <td>{{ report.created_at}}</td>
+
+            
+            
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% include 'footer.html' %}

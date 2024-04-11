@@ -19,11 +19,11 @@ from . tokens import generate_token
 from django.http import HttpRequest
 from .models import AccidentFiles
 import json
+from django.contrib.auth.tokens import default_token_generator
 
 
 
 # Create your views here.
-
 
 
 
@@ -86,7 +86,7 @@ def signup(request):
 
         #Welcome confirmation mail
         subject = "Welcome to AccuReport."
-        message = "Hello " + officer.first_name + "\n" + "Welcome to GFG! \nThank you for visiting AccuReport an automated way to handle accidents and crime reports\nWe have also sent you a confirmation email, please confirm that this is your email address. \n\nThank You\nTeamAccuReport"
+        message = "Hello " + officer.first_name + "\n" + "Welcome to AccuReport! \nThank you for visiting our website, an automated way to handle accidents and crime reports\nWe have also sent you a confirmation email, please confirm that this is your email address. \n\nThank You\nTeamAccuReport"
         from_email = settings.EMAIL_HOST_USER
         to_list = [officer.email]
         send_mail(subject, message, from_email, to_list, fail_silently=True)
@@ -190,14 +190,64 @@ def user_logout(request):
 
 
 #function view for mail verification
+# ... other imports
+
+
+# ... other code
+
+
 def mailOTP(request):
+    if request.method == 'POST':
+        userMail = request.POST.get('credentials')
+
+        officer = get_user_model()
+
+        try:
+            officer = Officer.objects.get(Q(email=userMail))
+        except Officer.DoesNotExist:
+            messages.error(request, "Email does not exist.")
+            return render(request, "authenticator/email_verification.html")
+
+        current_site = get_current_site(request)
+        subject = "Password Reset Request"
+        message = render_to_string("pwd_reset_email.html", {
+            'user': officer,
+            'domain': current_site.domain,
+            'uid': urlsafe_base64_encode(force_bytes(officer.pk)),
+            'token': default_token_generator.make_token(officer),
+        })
+        email = EmailMessage(subject, message, settings.EMAIL_HOST_USER, [officer.email])
+        email.send()
+
+        messages.success(request, "Password reset email sent.")
 
     return render(request, "authenticator/email_verification.html")
 
-def pwdReset(request):
 
-    return render(request, "authenticator/password-reset.html")
+def pwdReset(request, uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = Officer.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, Officer.DoesNotExist):
+        user = None
 
+    if user is not None and default_token_generator.check_token(user, token):
+        if request.method == 'POST':
+            new_password = request.POST.get("new_pwd")
+            confirm_password = request.POST.get("pwdRepeat")
+
+            if new_password == confirm_password:
+                user.set_password(new_password)
+                user.save()
+                messages.success(request, "Password reset successfully.")
+                return redirect('login')
+            else:
+                messages.error(request, "Passwords do not match.")
+        else:
+            return render(request, "authenticator/password-reset.html")
+    else:
+        return render(request, "authenticator/reset_failed.html")
+    
 
 
 
@@ -210,15 +260,26 @@ def create_file(request):
         form = AccidentFileForm(request.POST)
         if form.is_valid():
             AccidentFiles = form.save()
+            try:
+                fileName = AccidentFiles.name  # Access the specific field for file name
+            except AttributeError:
+                fileName = "File Name Not Available"  # Handle potential missing field
+
+            try:
+                abstract = AccidentFiles.abstract
+            except AttributeError:
+                abstract = "Abstract not provided"  # Set a default value or handle the error differently
+
             # Here's where you'd handle creating an actual file outside the database (optional)
             # (e.g., storing the file on the filesystem or using a cloud storage service)
 
             # Handle success (e.g., redirect to a success page)
+            messages.success(request, "File Created successfully!")
             return redirect('index')
     else:
         form = AccidentFileForm()
 
-    context = {'form': form, 'fname': fname}  # Include 'fname' in the context
+    context = {'form': form, 'fname': fname}
     return render(request, 'authenticator/index.html', context)
 
 
