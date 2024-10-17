@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Officer
-from .models import AccidentFiles
+from .models import AccidentFiles, AccidentDraft
 from django.contrib.auth.admin import UserAdmin
 
 
@@ -13,4 +13,6 @@ class OfficerAdmin(UserAdmin):
 
 admin.site.register(Officer, OfficerAdmin)
 admin.site.register(AccidentFiles)
+admin.site.register(AccidentDraft)
+
 

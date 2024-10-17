@@ -40,6 +40,13 @@ class AccidentFiles(models.Model):
     abstract = models.CharField(max_length=1000, blank=True)  # Optional abstract field
 
     def __str__(self):
-        return self.name
+        return self.name 
 
 
+
+class AccidentDraft(models.Model):
+    scene = models.TextField()  # Use TextField for large text content
+    created_date = models.DateTimeField(auto_now_add=True)  # Automatically record creation date
+
+    def __str__(self):
+        return f"Accident Draft - {self.created_date}"

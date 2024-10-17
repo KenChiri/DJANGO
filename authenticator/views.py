@@ -17,7 +17,7 @@ from django.contrib.auth import login as auth_login #it will be used inside the 
 from django.db.models import Q 
 from . tokens import generate_token
 from django.http import HttpRequest
-from .models import AccidentFiles
+from .models import AccidentDraft, AccidentFiles
 import json
 from django.contrib.auth.tokens import default_token_generator
 
@@ -186,6 +186,19 @@ def user_logout(request):
     logout(request)
     messages.success(request, "Logged Out")
     return redirect('login')
+
+
+def create_accident_draft(request):
+    if request.method == 'POST':
+        scene = request.POST.get('scene')
+        # Create a new AccidentDraft instance and save it
+        accident_draft = AccidentDraft(scene=scene)
+        accident_draft.save()
+        # Redirect to a success page or display confirmation message
+        messages.success(request, "Draft saved Successfully")  # Replace 'success_url' with your desired URL
+    else:
+        # Render the form for GET requests
+        return render(request, 'accident_draft_form.html')
 
 
 

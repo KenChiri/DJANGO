@@ -262,10 +262,29 @@
                 <div id="roughDraft" class="sect" style="display: none;">
                     {% include 'authenticator/navigation.html' %}
                     <h1 class="dashH1">Accident Scene Description</h1>
+                    Use this sheet to fully describe the investigations and the scene in detail
 
-                    <textarea class="book">
-                        This is a book-like text area. You can write your text here. The single line in the middle represents the spine of the book.
-                    </textarea>
+                    
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <textarea class="book" name="scene">
+                            Narrate the accident
+                            Use this sheet to fully describe the investigations and the scene in detail
+    
+                        </textarea>
+                        <button type="submit" style="padding: 10pt; background-color: black; color: aliceblue;">Save Accident Draft</button>
+
+                                                
+                        {% if messages %}
+                        {% for message in messages %}
+                            <div class="message {{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        {% endif %}
+                    </form>
+
+                 
     
                     
                     
